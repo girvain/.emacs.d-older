@@ -1,0 +1,343 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("algorithm" include (:system-flag t) nil [130 150])
+            ("cstdlib" include (:system-flag t) nil [151 169])
+            ("iostream" include (:system-flag t) nil [170 189])
+            ("map" include (:system-flag t) nil [190 204])
+            ("stdexcept" include (:system-flag t) nil [205 225])
+            ("string" include (:system-flag t) nil [226 243])
+            ("vector" include (:system-flag t) nil [244 261])
+            ("list" include (:system-flag t) nil [262 277])
+            ("split.h" include nil nil [278 296])
+            ("time.h" include (:system-flag t) nil [297 314])
+            ("std::istream" using (:type ("std::istream" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [317 336])
+            ("std::cin" using (:type ("std::cin" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [347 362])
+            ("std::copy" using (:type ("std::copy" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [363 379])
+            ("std::cout" using (:type ("std::cout" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [393 409])
+            ("std::endl" using (:type ("std::endl" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [410 426])
+            ("std::find" using (:type ("std::find" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [440 456])
+            ("std::getline" using (:type ("std::getline" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [457 476])
+            ("std::logic_error" using (:type ("std::logic_error" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [487 510])
+            ("std::map" using (:type ("std::map" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [511 526])
+            ("std::string" using (:type ("std::string" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [541 559])
+            ("std::vector" using (:type ("std::vector" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [560 578])
+            ("std::domain_error" using (:type ("std::domain_error" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [590 614])
+            ("std::rand" using (:type ("std::rand" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [615 631])
+            ("std::list" using (:type ("std::list" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [645 661])
+            ("Rule" type
+               (:typedef ("vector" type
+                     (:template-specifier 
+                        ( ("string" type nil nil nil))                        
+                      :type "class")
+                      nil nil)
+                :type "typedef")
+                nil [663 691])
+            ("Rule_collection" type
+               (:typedef ("vector" type
+                     (:template-specifier 
+                        ( ("Rule" type nil nil nil))                        
+                      :type "class")
+                      nil nil)
+                :type "typedef")
+                nil [702 739])
+            ("Grammar" type
+               (:typedef ("map" type
+                     (:template-specifier 
+                        ( ("string" type nil nil nil)
+                          ("Rule_collection" type nil nil nil))                        
+                      :type "class")
+                      nil nil)
+                :type "typedef")
+                nil [761 806])
+            ("read_grammar" function
+               (:arguments 
+                  ( ("in" variable
+                       (:reference 1
+                        :type ("istream" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [902 914]))                  
+                :type ("Grammar" type (:type "class") nil nil))
+                nil [881 2008])
+            ("nrand" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type "int") (reparse-symbol arg-sub-list) [2022 2026]))                  
+                :type "int")
+                nil [2012 2027])
+            ("nrand" function
+               (:arguments 
+                  ( ("n" variable (:type "int") (reparse-symbol arg-sub-list) [2090 2096]))                  
+                :type "int")
+                nil [2080 2296])
+            ("bracketed" function
+               (:arguments 
+                  ( ("s" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2315 2331]))                  
+                :type "bool")
+                nil [2300 2398])
+            ("gen_aux" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("Grammar" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2413 2428])
+                    ("" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2429 2443])
+                    ("" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("string" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2444 2460])
+                    ("" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("string" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2461 2477]))                  
+                :type "void")
+                nil [2400 2478])
+            ("gen_aux" function
+               (:arguments 
+                  ( ("g" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("Grammar" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2494 2511])
+                    ("token" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2512 2532])
+                    ("sentince" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("string" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2533 2558])
+                    ("tokens" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("string" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2559 2582]))                  
+                :type "void")
+                nil [2481 4123])
+            ("gen_sentence" function
+               (:arguments 
+                  ( ("g" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("Grammar" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4153 4170]))                  
+                :type ("vector" type
+                     (:template-specifier 
+                        ( ("string" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [4125 4593])
+            ("main" function (:type "int") nil [4596 5079]))          
+      :file "grammar.cc"
+      :pointmax 5080
+      :fsize 5079
+      :lastmodtime '(23394 38096 569898 845000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("algorithm" include (:system-flag t) nil [1 21])
+            ("cctype" include (:system-flag t) nil [22 39])
+            ("string" include (:system-flag t) nil [40 57])
+            ("vector" include (:system-flag t) nil [58 75])
+            ("split.h" include nil nil [77 95])
+            ("std::find_if" using (:type ("std::find_if" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [97 116])
+            ("std::string" using (:type ("std::string" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [117 135])
+            ("std::vector" using (:type ("std::vector" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [136 154])
+            ("std::isspace" using (:type ("std::isspace" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [173 192])
+            ("space" function
+               (:arguments 
+                  ( ("c" variable (:type "char") (reparse-symbol arg-sub-list) [272 279]))                  
+                :type "bool")
+                nil [261 303])
+            ("not_space" function
+               (:arguments 
+                  ( ("c" variable (:type "char") (reparse-symbol arg-sub-list) [379 386]))                  
+                :type "bool")
+                nil [364 411])
+            ("split" function
+               (:arguments 
+                  ( ("str" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [434 452]))                  
+                :type ("vector" type
+                     (:template-specifier 
+                        ( ("string" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [413 821]))          
+      :file "split.cc"
+      :pointmax 823
+      :fsize 822
+      :lastmodtime '(23394 35390 336623 496000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("GUARD_split_h" variable (:constant-flag t) nil [31 44])
+            ("vector" include (:system-flag t) nil [46 63])
+            ("string" include (:system-flag t) nil [64 81])
+            ("split" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("std::string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [113 132]))                  
+                :type ("std::vector" type
+                     (:template-specifier 
+                        ( ("std::string" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [82 133]))          
+      :file "split.h"
+      :pointmax 142
+      :fsize 141
+      :lastmodtime '(15732 62595 0 0)
+      :unmatched-syntax nil
+      :lexical-table 
+        '(("GUARD_split_h")
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("algorithm" include (:system-flag t) nil [1 21])
+            ("cctype" include (:system-flag t) nil [22 39])
+            ("string" include (:system-flag t) nil [40 57])
+            ("vector" include (:system-flag t) nil [58 75])
+            ("split.h" include nil nil [77 95])
+            ("std::find_if" using (:type ("std::find_if" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [97 116])
+            ("std::string" using (:type ("std::string" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [117 135])
+            ("std::vector" using (:type ("std::vector" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [136 154])
+            ("std::isspace" using (:type ("std::isspace" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [173 192])
+            ("space" function
+               (:arguments 
+                  ( ("c" variable (:type "char") (reparse-symbol arg-sub-list) [271 278]))                  
+                :type "bool")
+                nil [260 302])
+            ("not_space" function
+               (:arguments 
+                  ( ("c" variable (:type "char") (reparse-symbol arg-sub-list) [378 385]))                  
+                :type "bool")
+                nil [363 410])
+            ("split" function
+               (:arguments 
+                  ( ("str" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [433 451]))                  
+                :type ("vector" type
+                     (:template-specifier 
+                        ( ("string" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [412 820]))          
+      :file "split.cc~"
+      :pointmax 822
+      :fsize 821
+      :lastmodtime '(15732 62598 0 0)
+      :unmatched-syntax nil))
+  :file "!home!gavin!Dropbox!programming!acc_cpp!unix-source!chapter07!exe!exe5!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

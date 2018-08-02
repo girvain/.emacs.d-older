@@ -1,0 +1,1 @@
+("~/Dropbox/programming/acc_cpp/unix-source/chapter07/exe/exe5/build/" "~/Dropbox/programming/acc_cpp/unix-source/chapter07/exe/exe3/build/" "~/cquery/")

@@ -1,0 +1,2 @@
+(#s(treemacs-workspace "Default Workspace"
+                       (#s(treemacs-project "chapter07" "/home/gavin/Dropbox/programming/acc_cpp/unix-source/chapter07"))))

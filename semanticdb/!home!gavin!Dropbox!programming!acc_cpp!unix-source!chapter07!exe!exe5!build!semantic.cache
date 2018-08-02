@@ -1,0 +1,16 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode js-mode
+      :tags nil
+      :file "compile_commands.json"
+      :pointmax 913
+      :fsize 726
+      :lastmodtime '(23394 35460 393288 659000)
+      :unmatched-syntax '((BRACK_BLOCK 1 . 913))))
+  :file "!home!gavin!Dropbox!programming!acc_cpp!unix-source!chapter07!exe!exe5!build!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

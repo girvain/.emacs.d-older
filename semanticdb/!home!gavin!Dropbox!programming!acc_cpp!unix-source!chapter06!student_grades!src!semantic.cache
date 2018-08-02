@@ -1,0 +1,45 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("vector" include (:system-flag t) nil [1 18])
+            ("iostream" include (:system-flag t) nil [19 38])
+            ("analysis.h" include nil nil [40 61])
+            ("Student_info.h" include nil nil [62 87])
+            ("std::cin" using (:type ("std::cin" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [89 104])
+            ("std::cout" using (:type ("std::cout" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [105 121])
+            ("std::endl" using (:type ("std::endl" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [122 138])
+            ("std::vector" using (:type ("std::vector" type
+                 (:prototype t
+                  :type "class")
+                  nil nil)) nil [139 157])
+            ("main" function (:type "int") nil [159 1023]))          
+      :file "grade_analysis.cc"
+      :pointmax 1025
+      :fsize 1024
+      :lastmodtime '(23383 27745 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags nil
+      :file "Student_info.cc"
+      :pointmax 819
+      :fsize 818
+      :lastmodtime '(15732 62589 0 0)
+      :unmatched-syntax nil))
+  :file "!home!gavin!Dropbox!programming!acc_cpp!unix-source!chapter06!student_grades!src!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
