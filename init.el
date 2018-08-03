@@ -114,7 +114,11 @@
 (use-package cquery
   :ensure t
   :config
-  (setq cquery-executable "/home/gavin/cquery/build/release/bin/cquery")
+  ;; CHANGE THIS! when using linux or mac
+  ;;linux
+  ;;(setq cquery-executable "/home/gavin/cquery/build/release/bin/cquery")
+  ;; mac
+  (setq cquery-executable "/Users/gavinross/cquery/build/release/bin/cquery")
   (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
 
   ;; Syntax Checker for cquery
@@ -483,15 +487,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(set-frame-font "Monaco 11") ;; this is a mac font that needds installed on linux:
+(set-frame-font "Monaco 13") ;; this is a mac font that needds installed on linux:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Yasnippet
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path
-              "~/.emacs.d/plugins/yasnippet")
-(use-package yasnippet)
-(yas-global-mode 1)
+
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; evil mode
@@ -499,9 +507,19 @@
 (add-to-list 'load-path "~/.emacs.d/evil")
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-integration nil)
   :config
-  (evil-mode 1)
-  )
+  (evil-mode 1))
+
+;; this is a collection of evil key bindings lots of packages.
+;; use the (evil-collection-init ...) to enable the keys for a package/mode
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init 'neotree)
+  (evil-collection-init 'dired))
 
 (use-package evil-escape
   :ensure t
@@ -577,6 +595,14 @@
   :after treemacs projectile
   :ensure t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; neotree
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package neotree
+  :ensure t
+  :config
+  )
+
 
 
 
@@ -587,7 +613,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
+    (neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
  '(safe-local-variable-values
    (quote
     ((company-clang-arguments "-I/Users/gavinross/c-demo-project/include1/" "-I/Users/gavinross/c-demo-project/include2/")
