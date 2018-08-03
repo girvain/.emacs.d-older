@@ -116,9 +116,9 @@
   :config
   ;; CHANGE THIS! when using linux or mac
   ;;linux
-  ;;(setq cquery-executable "/home/gavin/cquery/build/release/bin/cquery")
+  (setq cquery-executable "/home/gavin/cquery/build/release/bin/cquery")
   ;; mac
-  (setq cquery-executable "/Users/gavinross/cquery/build/release/bin/cquery")
+  ;;(setq cquery-executable "/Users/gavinross/cquery/build/release/bin/cquery")
   (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
 
   ;; Syntax Checker for cquery
@@ -487,7 +487,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(set-frame-font "Monaco 13") ;; this is a mac font that needds installed on linux:
+(set-frame-font "Monaco 12") ;; this is a mac font that needds installed on linux:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Yasnippet
@@ -519,8 +519,8 @@
   :ensure t
   :config
   (evil-collection-init 'neotree)
-  (evil-collection-init 'dired))
-
+  ;;(evil-collection-init 'dired)
+)
 (use-package evil-escape
   :ensure t
   :config
@@ -536,11 +536,12 @@
   (projectile-mode)
 (setq projectile-completion-system 'ivy))
 
-;; (use-package counsel-projectile
-;;   :ensure t
-;;   :config
-;; ;;  (counsel-projectile-on)
-;;   )
+(use-package counsel-projectile
+  :ensure t
+  :config
+;;  (counsel-projectile-on)
+  (counsel-projectile-mode 1)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Treemacs
@@ -613,7 +614,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
+    (counsel-projectile neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
  '(safe-local-variable-values
    (quote
     ((company-clang-arguments "-I/Users/gavinross/c-demo-project/include1/" "-I/Users/gavinross/c-demo-project/include2/")
