@@ -108,100 +108,102 @@
 ;; cquery
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package cquery
-  :ensure t
-  :config
-  ;; CHANGE THIS! when using linux or mac
-  ;;linux
-  (setq cquery-executable "/home/gavin/cquery/build/release/bin/cquery")
-  ;; mac
-  ;;(setq cquery-executable "/Users/gavinross/cquery/build/release/bin/cquery")
-  (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
+;; (use-package cquery
+;;   :ensure t
+;;   :config
+;;   ;; CHANGE THIS! when using linux or mac
+;;   ;;linux
+;;   (setq cquery-executable "/home/gavin/cquery/build/release/bin/cquery")
+;;   ;; mac
+;;   ;;(setq cquery-executable "/Users/gavinross/cquery/build/release/bin/cquery")
+;;   (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
 
-  ;; Syntax Checker for cquery
-  (setq cquery-sem-highlight-method 'font-lock)
-;; alternatively, (setq cquery-sem-highlight-method 'overlay)
+;;   ;; Syntax Checker for cquery
+;;   (setq cquery-sem-highlight-method 'font-lock)
+;; ;; alternatively, (setq cquery-sem-highlight-method 'overlay)
 
-;; For rainbow semantic highlighting
-;; (cquery-use-default-rainbow-sem-highlight)
-  ;; (setq cquery-executable "/path/to/cquery-install-prefix/bin/cquery")
-  )
+;; ;; For rainbow semantic highlighting
+;; ;; (cquery-use-default-rainbow-sem-highlight)
+;;   ;; (setq cquery-executable "/path/to/cquery-install-prefix/bin/cquery")
+;;   )
 
-(defun cquery//enable ()
-  (condition-case nil
-      (lsp-cquery-enable)
-    (user-error nil)))
+;; (defun cquery//enable ()
+;;   (condition-case nil
+;;       (lsp-cquery-enable)
+;;     (user-error nil)))
 
-  (use-package cquery
-    :commands lsp-cquery-enable
-    :init (add-hook 'c-mode-common-hook #'cquery//enable))
-;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
+;;   (use-package cquery
+;;     :commands lsp-cquery-enable
+;;     :init (add-hook 'c-mode-common-hook #'cquery//enable))
+;; ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
 
-;; Completion for cquery
-(use-package company-lsp
-  :ensure t
-  :config
-  (push 'company-lsp company-backends)
-  (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
-)
+;; ;; Completion for cquery
+;; (use-package company-lsp
+;;   :ensure t
+;;   :config
+;;   (push 'company-lsp company-backends)
+;;   (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
+;; )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; lsp-ui
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package lsp-ui
-  :ensure t
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  )
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :config
+;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;   )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; rtags
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package rtags
-;;   :ensure t
-;;   :config
-;;   ;; Set path to rtag executables.
-;; ;;  (setq rtags-path
-;; ;;       (expand-file-name "~/rtags/build"))
-;;   ;;
-;;   ;; Start the rdm process unless the process is already running.
-;;   ;; --> Launch rdm externally and prior to Emacs instead.
-;;     (rtags-start-process-unless-running)
-;;   ;;
-;;   ;; Enable rtags-diagnostics.
-;;   (setq rtags-autostart-diagnostics t)
-;;   (rtags-diagnostics)
-;;   ;;
-;;   ;; Timeout for reparse on onsaved buffers.
-;;   (rtags-set-periodic-reparse-timeout 0.5)
-;;   ;;
-;;   ;; Rtags standard keybindings ([M-. on symbol to go to bindings]).
-;;   (rtags-enable-standard-keybindings)
-;;   ;;
-;;   ;; Enable completions in with rtags & company mode
-;;   ;; -> use irony for completions
-;;   ;;(setq rtags-completions-enabled t)
-;;   ;;(require 'company)
-;;   ;;(global-company-mode)
-;;   ;;(push 'company-rtags company-backends) ; Add company-rtags to company-backends
-  
-;;   )
+(use-package rtags
+  :ensure t
+  :config
+  ;; Set path to rtag executables.
+ (setq rtags-path
+      (expand-file-name "~/rtags/build"))
+  ;;
+  ;; Start the rdm process unless the process is already running.
+  ;; --> Launch rdm externally and prior to Emacs instead.
+    (rtags-start-process-unless-running)
+  ;;
+  ;; Enable rtags-diagnostics.
+  (setq rtags-autostart-diagnostics t)
+  (rtags-diagnostics)
+  ;;
+  ;; Timeout for reparse on onsaved buffers.
+  (rtags-set-periodic-reparse-timeout 0.5)
+  ;;
+  ;; Rtags standard keybindings ([M-. on symbol to go to bindings]).
+  (rtags-enable-standard-keybindings)
+  ;;
+  ;; Enable completions in with rtags & company mode
+  ;; -> use irony for completions
+  ;;(setq rtags-completions-enabled t)
+  ;;(require 'company)
+  ;;(global-company-mode)
+  ;;(push 'company-rtags company-backends) ; Add company-rtags to company-backends
+
+  ;; ivy integration
+  (setq rtags-display-result-backend 'ivy)
+  )
 
 ;; Flycheck rtags.
-;; (use-package flycheck-rtags
-;;   :after rtags
-;;   :ensure t
-;;   :config
-;;   (defun my-flycheck-rtags-setup ()
-;;     (flycheck-select-checker 'rtags)
-;;     (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;;     (setq-local flycheck-check-syntax-automatically nil))
-;;   (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
-;;   (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
-;;   (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup))
+(use-package flycheck-rtags
+  :after rtags
+  :ensure t
+  :config
+  (defun my-flycheck-rtags-setup ()
+    (flycheck-select-checker 'rtags)
+    (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+    (setq-local flycheck-check-syntax-automatically nil))
+  (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+  (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+  (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup))
 
-;; ;;Use rtags for auto-completion.
+;;Use rtags for auto-completion.
 ;; (use-package company-rtags
 ;;   :ensure t
 ;;   :config
@@ -212,22 +214,27 @@
 ;;     (push 'company-rtags company-backends)
 ;;     ))
 
+;; Ivy-Rtags
+(use-package ivy-rtags
+  :ensure t
+  :config)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cmake ide
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package cmake-ide
-;;   :after rtags
-;;   :ensure t
-;;   :config
-;;   ;; set path to project build directory
-;;  ;; (setq cmake-ide-build-dir
-;;  ;;       (expand-file-name "~/src/stringent/build"))
-;;   ;; CURRENTLY: hardcode to build dir of default project
-;;   ;; TODO: fix via .dir-locals.el
-;;   ;;
-;;   ;; invoke cmake-ide setup
-;;   (cmake-ide-setup)
-;;   )
+(use-package cmake-ide
+  :after rtags
+  :ensure t
+  :config
+  ;; set path to project build directory
+ ;; (setq cmake-ide-build-dir
+ ;;       (expand-file-name "~/src/stringent/build"))
+  ;; CURRENTLY: hardcode to build dir of default project
+  ;; TODO: fix via .dir-locals.el
+  ;;
+  ;; invoke cmake-ide setup
+  (cmake-ide-setup)
+  )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -243,21 +250,21 @@
   (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
   )
 
-;; ;; ;; Color mode line for errors.
-;; (use-package flycheck-color-mode-line
-;;   :ensure t
-;;   :after flycheck
-;;   :config '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
-;;   )
+;; ;; Color mode line for errors.
+(use-package flycheck-color-mode-line
+  :ensure t
+  :after flycheck
+  :config '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+  )
 
-;; ;; Show pos-tip popups for errors.
-;; (use-package flycheck-pos-tip
-;;   :ensure t
-;;   :after flycheck
-;;   :config (flycheck-pos-tip-mode)
-;;   )
+;; Show pos-tip popups for errors.
+(use-package flycheck-pos-tip
+  :ensure t
+  :after flycheck
+  :config (flycheck-pos-tip-mode)
+  )
 
-;; ;; Flycheck-plantuml/
+;; Flycheck-plantuml/
 ;; (use-package flycheck-plantuml
 ;;   :after flycheck
 ;;   :ensure t
@@ -267,60 +274,60 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; irony (C/C++ minor mode powered by libclang)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package irony
-;;  :ensure t
-;;  :config
-;;  (add-hook 'c-mode-hook 'irony-mode)
-;;  (add-hook 'c++-mode-hook 'irony-mode)
-;;  (add-hook 'objc-mode-hook 'irony-mode)
-;;  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-;;  (defun my-irony-mode-hook ()
-;;  (define-key irony-mode-map [remap completion-at-point]
-;;   'irony-completion-at-point-async)
-;;  (define-key irony-mode-map [remap complete-symbol]
-;;    'irony-completion-at-point-async))
-;;  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-;;  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-;;  )
+(use-package irony
+ :ensure t
+ :config
+ (add-hook 'c-mode-hook 'irony-mode)
+ (add-hook 'c++-mode-hook 'irony-mode)
+ (add-hook 'objc-mode-hook 'irony-mode)
+ (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+ (defun my-irony-mode-hook ()
+ (define-key irony-mode-map [remap completion-at-point]
+  'irony-completion-at-point-async)
+ (define-key irony-mode-map [remap complete-symbol]
+   'irony-completion-at-point-async))
+ (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+ (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+ )
 
 ;; ;; Eldoc shows argument list of the function you are currently writing in the echo area.
-;;   (use-package irony-eldoc
-;;     :ensure t
-;;     :config
-;;     (progn
-;;       (add-hook 'irony-mode-hook #'irony-eldoc)))
+  (use-package irony-eldoc
+    :ensure t
+    :config
+    (progn
+      (add-hook 'irony-mode-hook #'irony-eldoc)))
 
-;; ;; Flycheck irony
-;;   (use-package flycheck-irony
-;;     :after flycheck
-;;     :ensure t
-;;     :config
-;;     (progn
-;;       (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))))
+;; Flycheck irony
+  ;; (use-package flycheck-irony
+  ;;   :after flycheck
+  ;;   :ensure t
+  ;;   :config
+  ;;   (progn
+  ;;     (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))))
 
 ;;company-irony.
-;; (use-package company-irony
-;;   :after company
-;;   :ensure t
-;;   :config (global-company-mode)
-;;   ;;(optional) adds CC special commands to `company-begin-commands' in order to
-;;   ;;trigger completion at interesting places, such as after scope operator
-;;   ;;    std::|
-;;   (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-;; )
+(use-package company-irony
+  :after company
+  :ensure t
+  :config (global-company-mode)
+  ;;(optional) adds CC special commands to `company-begin-commands' in order to
+  ;;trigger completion at interesting places, such as after scope operator
+  ;;    std::|
+  (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+)
 
 ;;Company-mode backend for C/C++ header files that works with irony-mode.
 ;;Complementary to company-irony by offering completion suggestions to header files.
-;; (use-package company-irony-c-headers
-;; :ensure t
-;; :after company-irony
-;; :ensure t
-;; :config
-;; ;;Load with `irony-mode` as a grouped backend
-;; (eval-after-load 'company
-;; '(add-to-list
-;; 'company-backends '(company-irony-c-headers company-irony)))
-;; )
+(use-package company-irony-c-headers
+:ensure t
+:after company-irony
+:ensure t
+:config
+;;Load with `irony-mode` as a grouped backend
+(eval-after-load 'company
+'(add-to-list
+'company-backends '(company-irony-c-headers company-irony)))
+)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -517,12 +524,14 @@
   :config
   (evil-collection-init 'neotree)
   (evil-collection-init 'dired)
+  (evil-collection-init 'rtags)
 )
 (use-package evil-escape
   :ensure t
   :config
   (evil-escape-mode 1)
-  (setq-default evil-escape-key-sequence "jk"))
+  (setq-default evil-escape-key-sequence "jk")
+  (setq-default evil-escape-delay 0.5))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Projectile
@@ -599,7 +608,7 @@
 (use-package neotree
   :ensure t
   :config
-  (neotree-projectile-action )
+  ;;(neotree-projectile-action )
   )
 
 
@@ -612,7 +621,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (counsel-projectile neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
+    (ivy-rtags company-irony-c-headers company-irony flycheck-irony irony flycheck-plantuml flycheck-pos-tip flycheck-color-mode-line company-rtags flycheck-rtags rtags counsel-projectile neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
  '(safe-local-variable-values
    (quote
     ((company-clang-arguments "-I/Users/gavinross/c-demo-project/include1/" "-I/Users/gavinross/c-demo-project/include2/")
