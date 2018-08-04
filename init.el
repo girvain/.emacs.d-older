@@ -1,6 +1,3 @@
-(setq inhibit-startup-message t)
-
-
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -477,7 +474,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (use-package zenburn-theme
 ;;   :ensure t
-;;  :config (load-theme 'zenburn t))
+;;  :cosnfig (load-theme 'zenburn t))
 
 (use-package monokai-theme
   :ensure t
@@ -485,9 +482,9 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Fonts
+;; Font
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(set-frame-font "Monaco 12") ;; this is a mac font that needds installed on linux:
+(set-frame-font "Monaco 11") ;; this is a mac font that needds installed on linux:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Yasnippet
@@ -519,7 +516,7 @@
   :ensure t
   :config
   (evil-collection-init 'neotree)
-  ;;(evil-collection-init 'dired)
+  (evil-collection-init 'dired)
 )
 (use-package evil-escape
   :ensure t
@@ -534,7 +531,7 @@
   :ensure t
   :config
   (projectile-mode)
-(setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy))
 
 (use-package counsel-projectile
   :ensure t
@@ -602,6 +599,7 @@
 (use-package neotree
   :ensure t
   :config
+  (neotree-projectile-action )
   )
 
 
