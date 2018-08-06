@@ -161,10 +161,6 @@
 (use-package rtags
   :ensure t
   :config
-  ;; Set path to rtag executables.
- (setq rtags-path
-      (expand-file-name "~/rtags/build"))
-  ;;
   ;; Start the rdm process unless the process is already running.
   ;; --> Launch rdm externally and prior to Emacs instead.
     (rtags-start-process-unless-running)
