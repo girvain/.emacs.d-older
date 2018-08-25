@@ -1,3 +1,8 @@
+;;; Package --- Summary
+;;; Commentary:
+;; Gavin Ross EMACS config
+;; Disable cmake-ide when on mac, adjust fonts in font section accaordinly
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -46,7 +51,7 @@
 (global-set-key (kbd "C-;") 'prev-window)
 
 ;; enable line numbers for all programing modes
-(add-hook 'prog-mode-hook 'linum-mode)
+;;(add-hook 'prog-mode-hook 'linum-mode)
 
 ; Highlights the current cursor line
 (global-hl-line-mode t)
@@ -57,6 +62,10 @@
 ;; compile key command
 (global-set-key [(f7)] 'compile)
 (global-set-key [(f8)] 'recompile)
+
+;; backup in one place. flat, no tree structure
+;; this stops emacs making ~file copies of everything
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
@@ -163,7 +172,7 @@
   :config
   ;; Start the rdm process unless the process is already running.
   ;; --> Launch rdm externally and prior to Emacs instead.
-    (rtags-start-process-unless-running)
+    ;;(rtags-start-process-unless-running)
   ;;
   ;; Enable rtags-diagnostics.
   (setq rtags-autostart-diagnostics t)
@@ -218,19 +227,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cmake ide
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package cmake-ide
-  :after rtags
-  :ensure t
-  :config
-  ;; set path to project build directory
- ;; (setq cmake-ide-build-dir
- ;;       (expand-file-name "~/src/stringent/build"))
-  ;; CURRENTLY: hardcode to build dir of default project
-  ;; TODO: fix via .dir-locals.el
-  ;;
-  ;; invoke cmake-ide setup
-  (cmake-ide-setup)
-  )
+;; (use-package cmake-ide
+;;   :after rtags
+;;   :ensure t
+;;   :config
+;;   ;; set path to project build directory
+;;  ;; (setq cmake-ide-build-dir
+;;  ;;       (expand-file-name "~/src/stringent/build"))
+;;   ;; CURRENTLY: hardcode to build dir of default project
+;;   ;; TODO: fix via .dir-locals.el
+;;   ;;
+;;   ;; invoke cmake-ide setup
+;;   (cmake-ide-setup)
+;;   )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -479,15 +488,37 @@
 ;;   :ensure t
 ;;  :cosnfig (load-theme 'zenburn t))
 
-(use-package monokai-theme
-  :ensure t
-  :config (load-theme 'monokai t))
+;; (use-package monokai-theme
+;;   :ensure t
+;;   :config (load-theme 'monokai t))
 
+(use-package doom-themes
+  :ensure t
+  :config
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+    ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+    ;; may have their own settings.
+    (load-theme 'doom-molokai t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+
+    ;; Enable custom neotree theme (all-the-icons must be installed!)
+    (doom-themes-neotree-config)
+    ;; or for treemacs users
+    (doom-themes-treemacs-config)
+
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config)
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(set-frame-font "Monaco 11") ;; this is a mac font that needds installed on linux:
+(set-frame-font "Monaco 13") ;; this is a mac font that needds installed on linux:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Yasnippet
@@ -521,6 +552,7 @@
   (evil-collection-init 'neotree)
   (evil-collection-init 'dired)
   (evil-collection-init 'rtags)
+  (evil-collection-init 'ivy)
 )
 (use-package evil-escape
   :ensure t
@@ -617,7 +649,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ivy-rtags company-irony-c-headers company-irony flycheck-irony irony flycheck-plantuml flycheck-pos-tip flycheck-color-mode-line company-rtags flycheck-rtags rtags counsel-projectile neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
+    (doom-themes cyberpunk-theme ivy-rtags company-irony-c-headers company-irony flycheck-irony irony flycheck-plantuml flycheck-pos-tip flycheck-color-mode-line company-rtags flycheck-rtags rtags counsel-projectile neotree evil-collection evil-escape evil cquery irony-eldoc yasnippet-snippets counsel evil-visual-mark-mode cmake-ide swiper which-key try use-package)))
  '(safe-local-variable-values
    (quote
     ((company-clang-arguments "-I/Users/gavinross/c-demo-project/include1/" "-I/Users/gavinross/c-demo-project/include2/")
